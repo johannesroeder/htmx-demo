@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employees</title>
+</head>
+<body>
+    <table th:fragment="employeeList" style="width:80%" border="1"
+           class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee:${allEmpList}">
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td>
+                <!--  Because we are combining thymeleaf with hx we have to use th:hx-get to get access to our variables
+                              https://stackoverflow.com/questions/77265478/how-to-append-variable-inside-the-hx-delete
+                              -->
+                <a th:hx-get="@{/employee-info/{id}(id=${employee.id})}"
+                   class="btn btn-primary">More info</a>
+                <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:fragment="employeeInfo">
+        <p th:text="${info}"></p>
+    </div>
+</body>
+</html>
