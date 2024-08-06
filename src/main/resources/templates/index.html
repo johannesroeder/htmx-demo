@@ -9,13 +9,16 @@
 </head>
 <body>
 <div class="container my-2" align="center">
-
     <h3>Employee List</h3>
-    <a
+    <button
             hx-get="/employees"
             hx-target="#employeeList"
             hx-swap="outerHTML"
-            class="btn btn-primary btn-sm mb-3" >Show all employees</a>
+            hx-indicator="#indicator"
+            class="btn btn-primary btn-sm mb-3" >
+        Load all employees
+    </button>
+    <p id="indicator" class="htmx-indicator">Loading</p>
     <div id="employeeList"></div>
     <div id="employeeInfo"></div>
 </div>
