@@ -5,7 +5,7 @@
     <title>Employees</title>
 </head>
 <body>
-    <table th:fragment="employeeList" style="width:80%" border="1"
+    <table th:fragment="employeeList" style="width:80%"
            class = "table table-striped table-responsive-md">
         <thead>
         <tr>
@@ -22,7 +22,10 @@
                 <!--  Because we are combining thymeleaf with hx we have to use th:hx-get to get access to our variables
                               https://stackoverflow.com/questions/77265478/how-to-append-variable-inside-the-hx-delete
                               -->
+                <!-- Because we want to preserve the original html element with its id, we can use innerHtml swap here    -->
                 <a th:hx-get="@{/employee-info/{id}(id=${employee.id})}"
+                   hx-target="#employeeInfo"
+                   hx-swap="innerHTML"
                    class="btn btn-primary">More info</a>
                 <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
                    class="btn btn-danger">Delete</a>

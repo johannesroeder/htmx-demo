@@ -22,7 +22,7 @@ public class EmployeeController {
 
     @GetMapping("employee-info/{id}")
     public String employeeInfo(@PathVariable Integer id, Model model) {
-        model.addAttribute("employee", employeeService.getEmployees().get(0));
+        model.addAttribute("info", employeeService.getEmployeeInfo(id));
         return "fragments :: employeeInfo";
     }
 }
