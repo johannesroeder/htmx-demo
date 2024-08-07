@@ -23,11 +23,12 @@
                               https://stackoverflow.com/questions/77265478/how-to-append-variable-inside-the-hx-delete
                               -->
                 <!-- Because we want to preserve the original html element with its id, we can use innerHtml swap here    -->
-                <a th:hx-get="@{/employee-info/{id}(id=${employee.id})}"
+                <a th:hx-get="@{/employee/{id}(id=${employee.id})}"
                    hx-target="#employeeInfo"
                    hx-swap="innerHTML"
                    class="btn btn-primary">More info</a>
-                <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
+                <a th:hx-delete="@{/employee/{id}(id=${employee.id})}"
+                   hx-target="#employeeList"
                    class="btn btn-danger">Delete</a>
             </td>
         </tr>
